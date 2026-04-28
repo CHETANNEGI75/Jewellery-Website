@@ -1,0 +1,251 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🌿 MAIN BACKGROUND (CREAM WHITE) */
+.home {
+  font-family: "Poppins", sans-serif;
+  background: #fdf6f0; /* 💎 cream white */
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 40px;
+
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+
+  border-bottom: 1px solid #f3e6e0;
+}
+
+.nav-center {
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: #444;
+}
+
+/* NAV BUTTONS */
+.nav-right button {
+  margin-left: 10px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-right button:first-child {
+  border: 1px solid #e7a1b0;
+  background: transparent;
+  color: #c85a7c;
+}
+
+.nav-right button:last-child {
+  background: #ffb6c1;
+  border: none;
+  color: white;
+}
+
+.nav-right button:hover {
+  transform: translateY(-2px);
+}
+
+/* HERO */
+.hero {
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+}
+
+/* LIGHT OVERLAY */
+.overlay {
+  height: 100%;
+  background: rgba(255, 240, 245, 0.35);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  color: #c94f7c;
+}
+
+.overlay p {
+  color: #555;
+}
+
+.overlay button {
+  padding: 10px 20px;
+  background: #ffb6c1;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+/* SECTION */
+.section {
+  padding: 70px 60px;
+  text-align: center;
+}
+
+.section h2 {
+  color: #c94f7c;
+  margin-bottom: 30px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* 🛍 PRODUCT CARD */
+.card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+}
+
+/* IMAGE */
+.card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+/* TEXT */
+.card p {
+  padding: 12px;
+  font-weight: 500;
+}
+
+/* 💗 HOVER EFFECT (MAIN CHANGE) */
+.card:hover {
+  transform: translateY(-8px);
+
+  /* 💎 pink luxury shadow */
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.35);
+}
+
+/* FEATURES */
+.features {
+  padding: 80px 60px;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.feature-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25);
+}
+
+/* LEGACY */
+.legacy {
+  display: flex;
+  gap: 60px;
+  padding: 100px 80px;
+  background: transparent;
+}
+
+.legacy-left {
+  width: 50%;
+  position: relative;
+}
+
+.legacy-left img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+.legacy-badge {
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+
+  background: #ffe4ec;
+  padding: 15px 20px;
+  border-radius: 6px;
+}
+
+.legacy-right {
+  width: 50%;
+}
+
+.small-title {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #c27a8a;
+}
+
+.desc {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+/* BUTTON */
+.legacy-right button {
+  margin-top: 15px;
+  padding: 10px 20px;
+
+  border: 1px solid #d63384;
+  background: transparent;
+  color: #d63384;
+
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.legacy-right button:hover {
+  background: #d63384;
+  color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .grid,
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .legacy {
+    flex-direction: column;
+  }
+
+  .legacy-left,
+  .legacy-right {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}

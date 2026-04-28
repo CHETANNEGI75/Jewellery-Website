@@ -1,0 +1,19 @@
+.cart {
+  padding: 20px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  background: white;
+  padding: 10px;
+}
+
+.cart-item img {
+  width: 100px;
+}
+
+.qty button {
+  margin: 5px;
+}

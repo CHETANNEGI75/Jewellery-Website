@@ -1,0 +1,65 @@
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff7fa, #fff0f5);
+  font-family: "Poppins", sans-serif;
+}
+
+/* NAVBAR */
+.dash-navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+}
+
+.dash-navbar h2 {
+  letter-spacing: 3px;
+}
+
+.dash-user {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.dash-user button {
+  padding: 6px 12px;
+  border: none;
+  background: #ff69b4;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* CONTENT */
+.dash-content {
+  padding: 60px 40px;
+}
+
+.dash-content h1 {
+  color: #c94f7c;
+}
+
+.cards {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+
+  box-shadow: 0 5px 15px rgba(255,105,180,0.2);
+
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}

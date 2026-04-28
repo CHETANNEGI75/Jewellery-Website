@@ -1,0 +1,72 @@
+.form-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* TITLE */
+.form-container h1 {
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* INPUTS */
+.form-container input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* OPTIONS ROW */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 25px;
+  font-size: 13px;
+}
+
+/* LEFT: force perfect vertical alignment */
+.remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 🔥 KEY FIX */
+.remember input {
+  width: 16px;
+  height: 16px;
+  margin: 0;              /* remove default browser margin */
+  transform: translateY(-1px); /* tiny lift to match text baseline */
+}
+
+/* RIGHT */
+.forgot {
+  cursor: pointer;
+} 
+
+/* BUTTON */
+.form-container button {
+  width: 100%;
+  padding: 14px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+/* MEMBERSHIP BOX */
+.membership-box {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
