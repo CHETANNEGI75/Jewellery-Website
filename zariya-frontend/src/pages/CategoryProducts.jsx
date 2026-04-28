@@ -1,13 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./CategoryProducts.css";
 
 const CategoryProducts = () => {
   const { name } = useParams();
+  const navigate = useNavigate(); // ✅ FIX
 
   const [products, setProducts] = useState([]);
 
-  const title = name ? name.toUpperCase() : "ALL PRODUCTS";
+  const title = name ? name.toUpperCase() : "ALL COLLECTIONS";
 
   useEffect(() => {
     fetchProducts();
@@ -27,18 +29,38 @@ const CategoryProducts = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>{title}</h2>
+    <div className="collection-page">
 
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+      {/* HEADER */}
+      <div className="collection-header">
+        <p className="subtitle">EXQUISITE CRAFTSMANSHIP</p>
+
+        <h1 className="main-heading">
+          {name ? `${title} COLLECTION` : "ALL COLLECTIONS"}
+        </h1>
+
+        <div className="divider"></div>
+      </div>
+
+      {/* GRID */}
+      <div className="product-grid">
         {products.map((item) => (
-          <div key={item._id} style={{ border: "1px solid #ddd", padding: "10px" }}>
-            <img src={item.image} width="150" />
-            <h3>{item.name}</h3>
-            <p>₹{item.price}</p>
+          <div
+            key={item._id}
+            className="product-card"
+            onClick={() => navigate(`/product/${item._id}`)}
+          >
+            <img src={item.image} alt="" />
+
+            <div className="info">
+              <p className="brand">Zariya Collection</p>
+              <h3>{item.name}</h3>
+              <p className="price">₹{item.price}</p>
+            </div>
           </div>
         ))}
       </div>
+
     </div>
   );
 };

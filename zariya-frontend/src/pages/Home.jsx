@@ -17,7 +17,6 @@ import { FaTruck, FaLock, FaGem, FaUndo } from "react-icons/fa";
 
 const Home = () => {
   const navigate = useNavigate();
-
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -26,11 +25,8 @@ const Home = () => {
   }, []);
 
   const handleProtectedClick = (path) => {
-    if (user) {
-      navigate(path);
-    } else {
-      navigate("/signup");
-    }
+    if (user) navigate(path);
+    else navigate("/signup");
   };
 
   const handleLogout = () => {
@@ -42,20 +38,24 @@ const Home = () => {
   return (
     <div className="home">
 
-      {/* NAVBAR */}
+      {/* 🔥 NAVBAR */}
       <div className="navbar">
         <div className="nav-left">⌕</div>
         <div className="nav-center">ZARIYA</div>
 
         <div className="nav-right">
-          <button onClick={() => navigate("/cart")}>Cart 🛒</button>
+          <button className="cart-btn" onClick={() => navigate("/cart")}>
+            Cart 🛒
+          </button>
 
           {user ? (
             <div className="profile">
               <span onClick={() => navigate("/dashboard")}>
                 👤 {user.name}
               </span>
-              <button onClick={handleLogout}>Logout</button>
+              <button className="logout-btn" onClick={handleLogout}>
+                Logout
+              </button>
             </div>
           ) : (
             <>
@@ -66,7 +66,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* HERO */}
+      {/* 🔥 HERO */}
       <div
         className="hero"
         style={{ backgroundImage: `url(${homeImg})` }}
@@ -75,8 +75,10 @@ const Home = () => {
           <h1>Timeless Elegance</h1>
           <p>Crafted for moments that matter</p>
 
-          {/* 🔥 FIX: item undefined hata diya */}
-          <button onClick={() => handleProtectedClick("/shop")}>
+          <button
+            className="explore-btn"
+            onClick={() => handleProtectedClick("/category/ring")}
+          >
             Explore Now
           </button>
         </div>
@@ -96,7 +98,6 @@ const Home = () => {
             <div
               key={i}
               className="card"
-              
               onClick={() =>
                 handleProtectedClick(`/category/${item.name}`)
               }
@@ -139,25 +140,25 @@ const Home = () => {
 
         <div className="features-grid">
           <div className="feature-card">
-            <FaTruck style={{ fontSize: "40px", color: "#ff69b4" }} />
+            <FaTruck />
             <h3>Free Shipping</h3>
             <p>On orders above ₹999</p>
           </div>
 
           <div className="feature-card">
-            <FaLock style={{ fontSize: "40px", color: "#ff69b4" }} />
+            <FaLock />
             <h3>Secure Payment</h3>
             <p>100% safe checkout</p>
           </div>
 
           <div className="feature-card">
-            <FaGem style={{ fontSize: "40px", color: "#ff69b4" }} />
+            <FaGem />
             <h3>Premium Quality</h3>
             <p>Crafted with care</p>
           </div>
 
           <div className="feature-card">
-            <FaUndo style={{ fontSize: "40px", color: "#ff69b4" }} />
+            <FaUndo />
             <h3>Easy Returns</h3>
             <p>7-day return policy</p>
           </div>
@@ -188,6 +189,7 @@ const Home = () => {
           </button>
         </div>
       </div>
+
     </div>
   );
 };

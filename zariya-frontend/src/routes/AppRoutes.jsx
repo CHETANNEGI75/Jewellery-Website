@@ -6,6 +6,7 @@ import Signup from "../pages/Signup";
 import Dashboard from "../pages/Dashboard";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
+import ProductDetail from "../pages/ProductDetail";
 
 const AppRoutes = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -24,12 +25,13 @@ const AppRoutes = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
-
+<Route path="/product/:id" element={<ProductDetail />} />
       <Route
         path="/dashboard"
         element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
       />
     </Routes>
+
   );
 };
 

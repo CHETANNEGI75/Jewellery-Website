@@ -1,0 +1,164 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f8f5f2;
+}
+
+/* CONTAINER */
+.detail-container {
+  padding: 30px 60px;
+}
+
+/* HEADER */
+.product-header {
+  margin-bottom: 30px;
+}
+
+.breadcrumb {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #bfa46f;
+}
+
+/* MAIN */
+.detail-page {
+  display: flex;
+  gap: 60px;
+}
+
+/* IMAGE */
+.left img {
+  width: 550px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transition: 0.3s;
+}
+
+.left img:hover {
+  transform: scale(1.03);
+}
+
+/* RIGHT */
+.right {
+  max-width: 500px;
+}
+
+/* TAG */
+.tag {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #bfa46f;
+}
+
+/* TITLE */
+.title {
+  font-size: 38px;
+  margin: 10px 0;
+  font-family: "Playfair Display", serif;
+}
+
+/* PRICE */
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.discount {
+  color: red;
+  font-size: 12px;
+}
+
+/* DESCRIPTION */
+.desc {
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 25px;
+}
+
+/* SIZE */
+.size-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.sizes button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.sizes button:hover {
+  border: 1px solid black;
+}
+
+/* BUTTONS */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.add-btn {
+  padding: 14px 30px;
+  background: black;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.wishlist {
+  padding: 14px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+/* BRAND */
+.brand-box {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+}
+
+.brand-box h4 {
+  margin: 0;
+}
+
+.brand-box p {
+  font-size: 12px;
+  color: gray;
+}
+
+.brand-box button {
+  padding: 8px 15px;
+  border: 1px solid black;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* LOADING */
+.loading {
+  text-align: center;
+  margin-top: 100px;
+}
