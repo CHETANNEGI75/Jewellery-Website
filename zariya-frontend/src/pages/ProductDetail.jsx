@@ -6,97 +6,86 @@ import "./ProductDetail.css";
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [selectedSize, setSelectedSize] = useState("");
 
   useEffect(() => {
-    fetchProduct();
-  }, []);
-
-  const fetchProduct = async () => {
-    try {
-      const res = await axios.get(
-        `http://localhost:5000/api/product/${id}`
-      );
+    const fetchProduct = async () => {
+      const res = await axios.get(`http://localhost:5000/api/product/${id}`);
       setProduct(res.data.product);
-    } catch (err) {
-      console.log(err);
+    };
+    fetchProduct();
+  }, [id]);
+
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      alert("Please select size");
+      return;
     }
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(
+      item => item._id === product._id && item.selectedSize === selectedSize
+    );
+
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({
+        ...product,
+        quantity: 1,
+        selectedSize
+      });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to Cart 🛒");
   };
 
-  if (!product) return <h2 className="loading">Loading...</h2>;
+  if (!product) return <h2>Loading...</h2>;
 
   return (
     <div className="detail-container">
 
-      {/* 🔥 HEADER (NEW) */}
-      <div className="product-header">
-        <p className="breadcrumb">
-          COLLECTIONS • FINE JEWELLERY • {product.name}
-        </p>
-      </div>
+      <p className="breadcrumb">
+        COLLECTIONS • FINE JEWELLERY • {product.name}
+      </p>
 
-      {/* 🔥 MAIN */}
       <div className="detail-page">
 
-        {/* IMAGE */}
         <div className="left">
           <img src={product.image} alt="" />
         </div>
 
-        {/* INFO */}
         <div className="right">
+          <h1>{product.name}</h1>
+          <h2 className="price">₹{product.price}</h2>
 
-          <p className="tag">CERTIFIED ★★★★★</p>
-
-          <h1 className="title">{product.name}</h1>
-
-          <div className="price-row">
-            <span className="price">₹{product.price}</span>
-            <span className="old-price">₹60000</span>
-            <span className="discount">SAVE 15%</span>
-          </div>
-
-          {/* DESCRIPTION */}
           <p className="desc">
-            This exquisite piece of jewellery is a perfect blend of tradition
-            and modern elegance. Crafted with precision and passion, this design
-            reflects timeless artistry that celebrates luxury and heritage.
-            <br /><br />
-            Every detail is carefully curated to enhance brilliance and
-            uniqueness. The smooth finish, intricate patterns, and premium
-            craftsmanship make it ideal for both special occasions and everyday
-            elegance.
-            <br /><br />
-            Designed for those who appreciate fine jewellery, this piece adds a
-            refined touch to your personality and style.
+            Crafted with timeless elegance and precision, this jewellery piece
+            blends tradition with modern luxury. Perfect for weddings,
+            celebrations, and daily wear.
           </p>
 
-          {/* SIZE */}
-          <p className="size-label">SELECT LENGTH</p>
+          <p className="size-label">SELECT SIZE</p>
 
           <div className="sizes">
-            <button>16 INCH</button>
-            <button>18 INCH</button>
-            <button>20 INCH</button>
+            {["16", "18", "20"].map(size => (
+              <button
+                key={size}
+                className={selectedSize === size ? "active" : ""}
+                onClick={() => setSelectedSize(size)}
+              >
+                {size} INCH
+              </button>
+            ))}
           </div>
 
-          {/* BUTTONS */}
-          <div className="actions">
-            <button className="add-btn">ADD TO BAG</button>
-            <button className="wishlist">♡</button>
-          </div>
-
-          {/* BRAND BOX */}
-          <div className="brand-box">
-            <div>
-              <h4>House of Zariya</h4>
-              <p>Master Vendor • 98% Positive</p>
-            </div>
-            <button>VIEW ATELIER</button>
-          </div>
-
+          <button className="add-btn" onClick={handleAddToCart}>
+            ADD TO BAG
+          </button>
         </div>
       </div>
-
     </div>
   );
 };

@@ -1,47 +1,49 @@
 import { registerService, loginService } from "../services/auth.service.js";
 
-
-// 📝 REGISTER CONTROLLER
+/* ===========================
+   REGISTER USER
+=========================== */
 export const registerUser = async (req, res) => {
   try {
     const data = req.body;
 
     const user = await registerService(data);
 
-    return res.status(201).json({
+    res.status(201).json({
       success: true,
       message: "User registered successfully",
-      user
+      user,
     });
 
   } catch (error) {
-    return res.status(400).json({
+    res.status(400).json({
       success: false,
-      message: error.message
+      message: error.message,
     });
   }
 };
 
 
-
-// 🔐 LOGIN CONTROLLER
+/* ===========================
+   LOGIN USER
+=========================== */
 export const loginUser = async (req, res) => {
   try {
     const data = req.body;
 
-    const result = await loginService(data);
+    const { user, token } = await loginService(data);
 
-    return res.status(200).json({
+    res.status(200).json({
       success: true,
       message: "Login successful",
-      user: result.user,
-      token: result.token
+      user,
+      token, // 🔥 IMPORTANT
     });
 
   } catch (error) {
-    return res.status(400).json({
+    res.status(401).json({
       success: false,
-      message: error.message
+      message: error.message,
     });
   }
 };

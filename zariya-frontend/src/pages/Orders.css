@@ -1,0 +1,63 @@
+/* PAGE */
+.orders-page {
+  padding: 60px 80px;
+  background: #f8f5f2;
+  min-height: 100vh;
+}
+
+/* TITLE */
+.orders-page h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  font-family: "Playfair Display", serif;
+}
+
+/* CARD */
+.order-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+}
+
+/* HEADER */
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+/* ITEM */
+.order-item {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.order-item img {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* TEXT */
+.order-item p {
+  margin: 3px 0;
+  color: #555;
+}
+
+/* STATUS COLORS */
+.order-header p:first-child {
+  color: #e5a3b0; /* pink premium tone */
+}

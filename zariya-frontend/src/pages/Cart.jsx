@@ -1,61 +1,76 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
-  const [cart, setCart] = useState([
-    {
-      id: 1,
-      name: "Gold Necklace",
-      price: 5000,
-      image: "https://via.placeholder.com/100",
-      qty: 1,
-    },
-  ]);
+  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
-  const increaseQty = (id) => {
-    setCart(cart.map(item =>
-      item.id === id ? { ...item, qty: item.qty + 1 } : item
-    ));
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+  }, []);
+
+  const updateQty = (id, size, type) => {
+    let updated = cart.map(item => {
+      if (item._id === id && item.selectedSize === size) {
+        if (type === "inc") item.quantity++;
+        if (type === "dec" && item.quantity > 1) item.quantity--;
+      }
+      return item;
+    });
+
+    setCart(updated);
+    localStorage.setItem("cart", JSON.stringify(updated));
   };
 
-  const decreaseQty = (id) => {
-    setCart(cart.map(item =>
-      item.id === id && item.qty > 1
-        ? { ...item, qty: item.qty - 1 }
-        : item
-    ));
+  const removeItem = (id, size) => {
+    let updated = cart.filter(
+      item => !(item._id === id && item.selectedSize === size)
+    );
+
+    setCart(updated);
+    localStorage.setItem("cart", JSON.stringify(updated));
   };
 
-  const removeItem = (id) => {
-    setCart(cart.filter(item => item.id !== id));
-  };
-
-  const total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const total = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="cart">
-      <h2>Your Cart</h2>
+
+      <h1>Your Cart</h1>
 
       {cart.map(item => (
-        <div key={item.id} className="cart-item">
-          <img src={item.image} alt="" />
+        <div key={item._id + item.selectedSize} className="item">
+
+          <img src={item.image} />
 
           <div>
             <h3>{item.name}</h3>
             <p>₹{item.price}</p>
+            <p>Size: {item.selectedSize}</p>
 
             <div className="qty">
-              <button onClick={() => decreaseQty(item.id)}>-</button>
-              <span>{item.qty}</span>
-              <button onClick={() => increaseQty(item.id)}>+</button>
+              <button onClick={() => updateQty(item._id, item.selectedSize, "dec")}>-</button>
+              <span>{item.quantity}</span>
+              <button onClick={() => updateQty(item._id, item.selectedSize, "inc")}>+</button>
             </div>
-          </div>
 
-          <button onClick={() => removeItem(item.id)}>Remove</button>
+            <button onClick={() => removeItem(item._id, item.selectedSize)}>
+              Remove
+            </button>
+
+          </div>
         </div>
       ))}
 
-      <h3>Total: ₹{total}</h3>
+      <h2>Total: ₹{total}</h2>
+
+      <button onClick={() => navigate("/checkout")}>
+        Checkout
+      </button>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 
@@ -8,66 +7,16 @@ import ringImg from "../assets/Ring.jpg";
 import necklaceImg from "../assets/Necklace.jpg";
 import earringImg from "../assets/Earring.jpg";
 import braceletImg from "../assets/Braclett.jpg";
-import trend1 from "../assets/Trend1.jpg";
-import trend2 from "../assets/Trend2.jpg";
 import legacyImg from "../assets/legacy.jpg";
-
-// ICONS
-import { FaTruck, FaLock, FaGem, FaUndo } from "react-icons/fa";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    setUser(storedUser);
-  }, []);
-
-  const handleProtectedClick = (path) => {
-    if (user) navigate(path);
-    else navigate("/signup");
-  };
-
-  const handleLogout = () => {
-    localStorage.clear();
-    setUser(null);
-    navigate("/");
-  };
 
   return (
     <div className="home">
 
-      {/* 🔥 NAVBAR */}
-      <div className="navbar">
-        <div className="nav-left">⌕</div>
-        <div className="nav-center">ZARIYA</div>
-
-        <div className="nav-right">
-          <button className="cart-btn" onClick={() => navigate("/cart")}>
-            Cart 🛒
-          </button>
-
-          {user ? (
-            <div className="profile">
-              <span onClick={() => navigate("/dashboard")}>
-                👤 {user.name}
-              </span>
-              <button className="logout-btn" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
-          ) : (
-            <>
-              <button onClick={() => navigate("/login")}>Login</button>
-              <button onClick={() => navigate("/signup")}>Register</button>
-            </>
-          )}
-        </div>
-      </div>
-
       {/* 🔥 HERO */}
-      <div
+      <section
         className="hero"
         style={{ backgroundImage: `url(${homeImg})` }}
       >
@@ -75,17 +24,15 @@ const Home = () => {
           <h1>Timeless Elegance</h1>
           <p>Crafted for moments that matter</p>
 
-          <button
-            className="explore-btn"
-            onClick={() => handleProtectedClick("/category/ring")}
-          >
+          <button onClick={() => navigate("/category")}>
             Explore Now
           </button>
         </div>
-      </div>
+      </section>
 
-      {/* CATEGORY */}
-      <div className="section">
+      {/* 🔥 CATEGORY */}
+      <section className="section">
+        <p className="sub">EXQUISITE CRAFTSMANSHIP</p>
         <h2>Shop By Category</h2>
 
         <div className="grid">
@@ -98,97 +45,70 @@ const Home = () => {
             <div
               key={i}
               className="card"
-              onClick={() =>
-                handleProtectedClick(`/category/${item.name}`)
-              }
+              onClick={() => navigate(`/category/${item.name}`)}
             >
-              <img src={item.img} alt="" />
+              <img src={item.img} alt={item.name} />
               <p>{item.name.toUpperCase()}</p>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* TRENDING */}
-      <div className="section">
-        <h2>Trending Now</h2>
-
-        <div className="grid">
-          {[
-            { img: trend1, name: "bracelet" },
-            { img: trend2, name: "ring" },
-            { img: earringImg, name: "earrings" },
-            { img: necklaceImg, name: "necklace" },
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="card"
-              onClick={() =>
-                handleProtectedClick(`/category/${item.name}`)
-              }
-            >
-              <img src={item.img} alt="" />
-              <p>{item.name.toUpperCase()}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* FEATURES */}
-      <div className="features">
+      {/* 🔥 WHY CHOOSE US */}
+      <section className="why">
         <h2>Why Choose Us</h2>
 
-        <div className="features-grid">
-          <div className="feature-card">
-            <FaTruck />
+        <div className="why-grid">
+
+          <div className="why-card">
+            <span>🚚</span>
             <h3>Free Shipping</h3>
             <p>On orders above ₹999</p>
           </div>
 
-          <div className="feature-card">
-            <FaLock />
+          <div className="why-card">
+            <span>🔒</span>
             <h3>Secure Payment</h3>
             <p>100% safe checkout</p>
           </div>
 
-          <div className="feature-card">
-            <FaGem />
+          <div className="why-card">
+            <span>💎</span>
             <h3>Premium Quality</h3>
             <p>Crafted with care</p>
           </div>
 
-          <div className="feature-card">
-            <FaUndo />
+          <div className="why-card">
+            <span>↩️</span>
             <h3>Easy Returns</h3>
             <p>7-day return policy</p>
           </div>
-        </div>
-      </div>
 
-      {/* LEGACY */}
-      <div className="legacy">
+        </div>
+      </section>
+
+      {/* 🔥 LEGACY */}
+      <section className="legacy">
         <div className="legacy-left">
-          <img src={legacyImg} alt="" />
-          <div className="legacy-badge">Est. 1924</div>
+          <img src={legacyImg} alt="legacy" />
         </div>
 
         <div className="legacy-right">
-          <p className="small-title">OUR HERITAGE</p>
+          <p className="small">OUR HERITAGE</p>
+
           <h2>A Legacy of Indian Craftsmanship</h2>
 
-          <p className="desc">
-            Zariya connects tradition with modern elegance.
+          <p>
+            Zariya stands where tradition meets modern elegance. Every piece
+            reflects a story of heritage, passion, and timeless beauty crafted
+            for generations.
           </p>
 
-          <p className="desc">
-            Crafted with passion, worn with pride.
-          </p>
-
-          <button onClick={() => handleProtectedClick("/shop")}>
+          <button onClick={() => navigate("/about")}>
             Our Story
           </button>
         </div>
-      </div>
+      </section>
 
     </div>
   );

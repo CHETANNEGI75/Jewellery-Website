@@ -1,0 +1,85 @@
+/* NAVBAR BASE */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 80px;
+
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+
+  z-index: 9999;
+}
+
+/* LOGO */
+.nav-logo {
+  font-size: 26px;
+  letter-spacing: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* LINKS CENTER */
+.nav-links {
+  display: flex;
+  gap: 70px; /* 🔥 big spacing */
+}
+
+.nav-links span {
+  font-size: 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+}
+
+/* GOLD HOVER */
+.nav-links span::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #c9a86a;
+  transition: 0.3s;
+}
+
+.nav-links span:hover::after {
+  width: 100%;
+}
+
+.nav-links span:hover {
+  color: #c9a86a;
+}
+
+/* ICONS RIGHT */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-icons span {
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-icons span:hover {
+  transform: scale(1.15);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+}

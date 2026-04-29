@@ -5,6 +5,7 @@
     import authRoutes from "./routes/auth.routes.js";
     import fileUpload from "express-fileupload";
     import productRoutes from "./routes/product.route.js";
+    import orderRoutes from "./routes/order.route.js";
 
     dotenv.config();
 
@@ -22,6 +23,9 @@
     }));
 
     // Routes
+    
+
+app.use("/api/order", orderRoutes);
     app.use("/api/auth", authRoutes);
     app.use("/api/product", productRoutes);
 
