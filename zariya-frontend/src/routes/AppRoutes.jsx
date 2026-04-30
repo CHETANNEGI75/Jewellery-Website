@@ -9,6 +9,7 @@ import Checkout from "../pages/Checkout";
 import Success from "../pages/Success";
 import Orders from "../pages/Orders";
 import ProductDetail from "../pages/ProductDetail";
+import About from "../pages/About";
 
 const AppRoutes = () => {
   const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -19,7 +20,7 @@ const AppRoutes = () => {
 
       {/* 🔥 SHOP (all products) */}
       <Route path="/shop" element={<CategoryProducts />} />
-
+      <Route path="/about" element={<About />} />
       {/* 🔥 CATEGORY */}
       <Route path="/category/:name" element={<CategoryProducts />} />
 
@@ -27,15 +28,14 @@ const AppRoutes = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
-<Route path="/product/:id" element={<ProductDetail />} />
-<Route path="/success" element={<Success />} />
-<Route path="/orders" element={<Orders />} />
+      <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/success" element={<Success />} />
+      <Route path="/orders" element={<Orders />} />
       <Route
         path="/dashboard"
         element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
       />
     </Routes>
-
   );
 };
 

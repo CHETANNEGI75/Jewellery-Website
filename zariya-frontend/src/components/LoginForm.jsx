@@ -24,14 +24,18 @@ const LoginForm = () => {
 
     console.log("LOGIN RESPONSE:", res.data);
 
-    // 🔥 YE LINE SABSE IMPORTANT HAI
+    // ✅ SAVE DATA
+    localStorage.setItem("user", JSON.stringify(res.data.user));
     localStorage.setItem("token", res.data.token);
 
-    localStorage.setItem("user", JSON.stringify(res.data.user));
+    const role = res.data.user.role;
 
-    alert("Login successful");
-
-    navigate("/");
+    // 🔥 YAHI PAR LAGANA HAI (EXACT SPOT)
+    if (role === "vendor") {
+      window.location.href = "http://localhost:5174"; // vendor panel
+    } else {
+      navigate("/"); // normal user → home
+    }
 
   } catch (err) {
     alert("Invalid credentials");
