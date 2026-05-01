@@ -2,23 +2,13 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
-    userId: {
-      type: String,
-      required: true,
-    },
-    items: [
-      {
-        name: String,
-        price: Number,
-        image: String,
-        quantity: Number,
-        selectedSize: String,
-      },
-    ],
+    productName: String,
+    customerName: String,
     total: Number,
     status: {
       type: String,
-      default: "Processing",
+      enum: ["DELIVERED", "PENDING", "SHIPPED"],
+      default: "PENDING",
     },
   },
   { timestamps: true }

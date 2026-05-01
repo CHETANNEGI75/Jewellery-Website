@@ -1,25 +1,25 @@
 import Order from "../models/order.model.js";
 
-/* ===========================
-   CREATE ORDER
-=========================== */
+
 export const createOrder = async (req, res) => {
   try {
-    const { items, total } = req.body;
-
+const { items, totalPrice } = req.body;
     if (!items || items.length === 0) {
       return res.status(400).json({
         success: false,
         message: "Cart is empty",
       });
     }
-
+console.log(items);
     const order = await Order.create({
-      userId: req.user.id, // 🔥 JWT se aayega
-      items,
-      total,
-      status: "Processing",
-    });
+  userId: req.user.id,
+  items,
+  total: totalPrice,
+
+  // 🔥 important
+  productName: items[0]?.name,   // first item ka name
+  customerName: req.user.name,   // logged in user ka name
+});
 
     res.status(201).json({
       success: true,
@@ -39,26 +39,18 @@ export const createOrder = async (req, res) => {
 =========================== */
 export const getOrders = async (req, res) => {
   try {
-    const orders = await Order.find({
-      userId: req.user.id,
-    }).sort({ createdAt: -1 });
-
+    const orders = await Order.find().sort({ createdAt: -1 });
     res.json({
       success: true,
-      count: orders.length,
+      count: orders.length, 
       orders,
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: err.message,
-    });
+    res.status(500).json({ message: err.message });
   }
 };
 
-/* ===========================
-   GET SINGLE ORDER
-=========================== */
+
 export const getSingleOrder = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);

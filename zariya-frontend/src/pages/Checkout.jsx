@@ -21,12 +21,19 @@ const Checkout = () => {
     e.preventDefault();
 
     const token = localStorage.getItem("token");
-console.log("TOKEN CHECK:", token);
-
+console.log("SENDING ORDER 👉", {
+    items: cart,
+    totalPrice: total
+  });
     try {
+      // ✅ IMPORTANT FIXES HERE
       await axios.post(
-        "http://localhost:5000/api/order/create",
-        { items: cart, total },
+        "http://localhost:5000/api/orders/create", // ✅ correct route
+        {
+          items: cart,
+          totalPrice: total,   // ✅ backend friendly key
+          // status: "PENDING",   // ✅ enum match
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -35,17 +42,17 @@ console.log("TOKEN CHECK:", token);
       );
 
       localStorage.removeItem("cart");
-
       navigate("/success");
     } catch (err) {
-      alert("Error placing order");
+      console.log(err.response?.data);
+      alert(err.response?.data?.message || "Error placing order");
     }
   };
 
   return (
     <div className="checkout-container">
 
-      {/* LEFT FORM */}
+      {/* LEFT */}
       <div className="checkout-left">
         <h1>Checkout</h1>
 
@@ -59,7 +66,7 @@ console.log("TOKEN CHECK:", token);
         </form>
       </div>
 
-      {/* RIGHT SUMMARY */}
+      {/* RIGHT */}
       <div className="checkout-right">
         <h2>Order Summary</h2>
 

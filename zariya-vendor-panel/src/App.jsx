@@ -1,12 +1,8 @@
-import { BrowserRouter } from "react-router-dom";
-import VendorRoutes from "./routes/VendorRoutes";
+import Dashboard from "./pages/Dashboard";
+import "./App.css";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <VendorRoutes />
-    </BrowserRouter>
-  );
+  return <Dashboard />;
 }
 
 export default App;

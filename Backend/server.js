@@ -25,7 +25,7 @@
     // Routes
     
 
-app.use("/api/order", orderRoutes);
+app.use("/api/orders", orderRoutes);
     app.use("/api/auth", authRoutes);
     app.use("/api/product", productRoutes);
 
